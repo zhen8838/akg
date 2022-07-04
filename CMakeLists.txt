@@ -123,6 +123,11 @@ tvm_option(
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # include directories
+if(USE_OPENMP AND APPLE AND CONDA_PREFIX)
+  include_directories(AFTER "${CONDA_PREFIX}/include")
+  message(STATUS "Use Conda OpenMP: ${CONDA_PREFIX}/include")
+endif()
+
 include_directories(AFTER "${TVM_DIR}/include")
 include_directories(AFTER "${TVM_DIR}")
 include_directories(AFTER "${TVM_DIR}/src")
@@ -172,20 +177,31 @@ endif()
 
 set(CMAKE_SKIP_RPATH TRUE)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pipe -Wall -fPIC -fstack-protector-all")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,-z,relro,-z,now,-z,noexecstack")
+if(NOT APPLE)
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,-z,relro,-z,now,-z,noexecstack")
+endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -pipe -Wall -fPIC -fstack-protector-all")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-z,relro,-z,now,-z,noexecstack")
+if(NOT APPLE)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-z,relro,-z,now,-z,noexecstack")
+endif()
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
   message("-- Build in Debug mode")
-  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g -rdynamic")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g -rdynamic")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g")
+  add_link_options(-rdynamic)
 else()
   message("-- Build in Release mode")
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -D_FORTIFY_SOURCE=2 -Werror")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -D_FORTIFY_SOURCE=2 -Werror")
 endif()
+
+if(APPLE)
+  add_compile_options(-Wno-unused-lambda-capture -Wno-inconsistent-missing-override -Wno-delete-non-abstract-non-virtual-dtor -Wno-unused-private-field -Wno-dangling-field -Wno-unused-const-variable -Wno-overloaded-virtual -Wno-braced-scalar-init -Wno-unused-variable -Wno-dangling-gsl -Wno-non-c-typedef-for-linkage)  
+endif(APPLE)
+
+
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CMAKE_CXX_COMPILER_VERSION
                                            VERSION_GREATER 7.0)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -faligned-new")

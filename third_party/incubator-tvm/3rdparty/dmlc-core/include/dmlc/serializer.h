@@ -353,15 +353,15 @@ struct Handler<std::pair<TA, TB> > {
   }
 };
 
-template<typename K, typename V>
-struct Handler<std::map<K, V> >
-    : public CollectionHandler<std::map<K, V>, std::pair<K, V> > {
-};
+// template<typename K, typename V>
+// struct Handler<std::map<K, V> >
+//     : public CollectionHandler<std::map<K, V>, std::pair<K, V> > {
+// };
 
-template<typename K, typename V>
-struct Handler<std::multimap<K, V> >
-    : public CollectionHandler<std::multimap<K, V>, std::pair<K, V> > {
-};
+// template<typename K, typename V>
+// struct Handler<std::multimap<K, V> >
+//     : public CollectionHandler<std::multimap<K, V>, std::pair<K, V> > {
+// };
 
 template<typename T>
 struct Handler<std::set<T> >

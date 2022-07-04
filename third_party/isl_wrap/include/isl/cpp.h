@@ -391,7 +391,7 @@ public:
 
   inline isl::aff add(isl::aff aff2) const;
   inline isl::aff add_constant(isl::val v) const;
-  inline isl::aff add_constant(long v) const;
+  inline isl::aff add_constant(int64_t v) const;
   inline isl::aff add_constant_si(int v) const;
   inline isl::basic_set bind(isl::id id) const;
   inline isl::basic_set bind(const std::string &id) const;
@@ -410,16 +410,16 @@ public:
   inline isl::set le_set(isl::aff aff2) const;
   inline isl::set lt_set(isl::aff aff2) const;
   inline isl::aff mod(isl::val mod) const;
-  inline isl::aff mod(long mod) const;
+  inline isl::aff mod(int64_t mod) const;
   inline isl::aff mul(isl::aff aff2) const;
   inline isl::set ne_set(isl::aff aff2) const;
   inline isl::aff neg() const;
   static inline isl::aff param_on_domain(isl::space space, isl::id id);
   inline isl::aff pullback(isl::multi_aff ma) const;
   inline isl::aff scale(isl::val v) const;
-  inline isl::aff scale(long v) const;
+  inline isl::aff scale(int64_t v) const;
   inline isl::aff scale_down(isl::val v) const;
-  inline isl::aff scale_down(long v) const;
+  inline isl::aff scale_down(int64_t v) const;
   inline isl::aff set_constant_si(int v) const;
   inline isl::aff sub(isl::aff aff2) const;
   inline isl::aff unbind_params_insert_domain(isl::multi_id domain) const;
@@ -1825,10 +1825,10 @@ public:
   inline isl::multi_aff range_product(isl::multi_aff multi2) const;
   inline isl::multi_aff scale(isl::multi_val mv) const;
   inline isl::multi_aff scale(isl::val v) const;
-  inline isl::multi_aff scale(long v) const;
+  inline isl::multi_aff scale(int64_t v) const;
   inline isl::multi_aff scale_down(isl::multi_val mv) const;
   inline isl::multi_aff scale_down(isl::val v) const;
-  inline isl::multi_aff scale_down(long v) const;
+  inline isl::multi_aff scale_down(int64_t v) const;
   inline isl::multi_aff set_aff(int pos, isl::aff el) const;
   inline isl::multi_aff set_at(int pos, isl::aff el) const;
   inline isl::multi_aff set_tuple_id(enum isl_dim_type type, isl::id id) const;
@@ -1953,10 +1953,10 @@ public:
   inline isl::multi_pw_aff range_product(isl::multi_pw_aff multi2) const;
   inline isl::multi_pw_aff scale(isl::multi_val mv) const;
   inline isl::multi_pw_aff scale(isl::val v) const;
-  inline isl::multi_pw_aff scale(long v) const;
+  inline isl::multi_pw_aff scale(int64_t v) const;
   inline isl::multi_pw_aff scale_down(isl::multi_val mv) const;
   inline isl::multi_pw_aff scale_down(isl::val v) const;
-  inline isl::multi_pw_aff scale_down(long v) const;
+  inline isl::multi_pw_aff scale_down(int64_t v) const;
   inline isl::multi_pw_aff set_at(int pos, isl::pw_aff el) const;
   inline isl::multi_pw_aff set_pw_aff(int pos, isl::pw_aff el) const;
   inline isl::multi_pw_aff set_tuple_id(enum isl_dim_type type, isl::id id) const;
@@ -2029,10 +2029,10 @@ public:
   inline isl::multi_union_pw_aff range_product(isl::multi_union_pw_aff multi2) const;
   inline isl::multi_union_pw_aff scale(isl::multi_val mv) const;
   inline isl::multi_union_pw_aff scale(isl::val v) const;
-  inline isl::multi_union_pw_aff scale(long v) const;
+  inline isl::multi_union_pw_aff scale(int64_t v) const;
   inline isl::multi_union_pw_aff scale_down(isl::multi_val mv) const;
   inline isl::multi_union_pw_aff scale_down(isl::val v) const;
-  inline isl::multi_union_pw_aff scale_down(long v) const;
+  inline isl::multi_union_pw_aff scale_down(int64_t v) const;
   inline isl::multi_union_pw_aff set_at(int pos, isl::union_pw_aff el) const;
   inline isl::multi_union_pw_aff set_tuple_id(enum isl_dim_type type, isl::id id) const;
   inline isl::multi_union_pw_aff set_tuple_id(enum isl_dim_type type, const std::string &id) const;
@@ -2074,7 +2074,7 @@ public:
 
   inline isl::multi_val add(isl::multi_val multi2) const;
   inline isl::multi_val add(isl::val v) const;
-  inline isl::multi_val add(long v) const;
+  inline isl::multi_val add(int64_t v) const;
   inline isl::multi_val flat_range_product(isl::multi_val multi2) const;
   inline isl::val at(int pos) const;
   inline isl::val get_at(int pos) const;
@@ -2093,16 +2093,16 @@ public:
   inline isl::multi_val range_product(isl::multi_val multi2) const;
   inline isl::multi_val scale(isl::multi_val mv) const;
   inline isl::multi_val scale(isl::val v) const;
-  inline isl::multi_val scale(long v) const;
+  inline isl::multi_val scale(int64_t v) const;
   inline isl::multi_val scale_down(isl::multi_val mv) const;
   inline isl::multi_val scale_down(isl::val v) const;
-  inline isl::multi_val scale_down(long v) const;
+  inline isl::multi_val scale_down(int64_t v) const;
   inline isl::multi_val set_at(int pos, isl::val el) const;
-  inline isl::multi_val set_at(int pos, long el) const;
+  inline isl::multi_val set_at(int pos, int64_t el) const;
   inline isl::multi_val set_tuple_id(enum isl_dim_type type, isl::id id) const;
   inline isl::multi_val set_tuple_id(enum isl_dim_type type, const std::string &id) const;
   inline isl::multi_val set_val(int pos, isl::val el) const;
-  inline isl::multi_val set_val(int pos, long el) const;
+  inline isl::multi_val set_val(int pos, int64_t el) const;
   inline unsigned size() const;
   inline isl::multi_val sub(isl::multi_val multi2) const;
   static inline isl::multi_val zero(isl::space space);
@@ -2197,7 +2197,7 @@ public:
   inline isl::pw_aff max(isl::pw_aff pwaff2) const;
   inline isl::pw_aff min(isl::pw_aff pwaff2) const;
   inline isl::pw_aff mod(isl::val mod) const;
-  inline isl::pw_aff mod(long mod) const;
+  inline isl::pw_aff mod(int64_t mod) const;
   inline isl::pw_aff mul(isl::pw_aff pwaff2) const;
   inline unsigned n_piece() const;
   inline isl::set ne_set(isl::pw_aff pwaff2) const;
@@ -2209,9 +2209,9 @@ public:
   inline isl::pw_aff pullback(isl::multi_pw_aff mpa) const;
   inline isl::pw_aff pullback(isl::pw_multi_aff pma) const;
   inline isl::pw_aff scale(isl::val v) const;
-  inline isl::pw_aff scale(long v) const;
+  inline isl::pw_aff scale(int64_t v) const;
   inline isl::pw_aff scale_down(isl::val f) const;
-  inline isl::pw_aff scale_down(long f) const;
+  inline isl::pw_aff scale_down(int64_t f) const;
   inline isl::pw_aff sub(isl::pw_aff pwaff2) const;
   inline isl::pw_aff subtract_domain(isl::set set) const;
   inline isl::pw_aff tdiv_q(isl::pw_aff pa2) const;
@@ -2320,9 +2320,9 @@ public:
   inline isl::pw_multi_aff range_factor_range() const;
   inline isl::pw_multi_aff range_product(isl::pw_multi_aff pma2) const;
   inline isl::pw_multi_aff scale(isl::val v) const;
-  inline isl::pw_multi_aff scale(long v) const;
+  inline isl::pw_multi_aff scale(int64_t v) const;
   inline isl::pw_multi_aff scale_down(isl::val v) const;
-  inline isl::pw_multi_aff scale_down(long v) const;
+  inline isl::pw_multi_aff scale_down(int64_t v) const;
   inline isl::pw_multi_aff sub(isl::pw_multi_aff pma2) const;
   inline isl::pw_multi_aff subtract_domain(isl::set set) const;
   inline isl::pw_multi_aff union_add(isl::pw_multi_aff pma2) const;
@@ -3198,7 +3198,7 @@ public:
   inline isl::union_map factor_domain() const;
   inline isl::union_map factor_range() const;
   inline isl::union_map fixed_power(isl::val exp) const;
-  inline isl::union_map fixed_power(long exp) const;
+  inline isl::union_map fixed_power(int64_t exp) const;
   inline isl::union_map flat_range_product(isl::union_map umap2) const;
   inline void foreach_map(const std::function<void(isl::map)> &fn) const;
   static inline isl::union_map from(isl::multi_union_pw_aff mupa);
@@ -3307,13 +3307,13 @@ public:
   inline isl::val max_val() const;
   inline isl::val min_val() const;
   inline isl::union_pw_aff mod(isl::val f) const;
-  inline isl::union_pw_aff mod(long f) const;
+  inline isl::union_pw_aff mod(int64_t f) const;
   static inline isl::union_pw_aff param_on_domain(isl::union_set domain, isl::id id);
   inline isl::union_pw_aff pullback(isl::union_pw_multi_aff upma) const;
   inline isl::union_pw_aff scale(isl::val v) const;
-  inline isl::union_pw_aff scale(long v) const;
+  inline isl::union_pw_aff scale(int64_t v) const;
   inline isl::union_pw_aff scale_down(isl::val v) const;
-  inline isl::union_pw_aff scale_down(long v) const;
+  inline isl::union_pw_aff scale_down(int64_t v) const;
   inline isl::union_pw_aff sub(isl::union_pw_aff upa2) const;
   inline isl::union_pw_aff subtract_domain(isl::union_set uset) const;
   inline isl::union_pw_aff union_add(isl::union_pw_aff upa2) const;
@@ -3410,9 +3410,9 @@ public:
   inline isl::union_pw_multi_aff range_factor_domain() const;
   inline isl::union_pw_multi_aff range_factor_range() const;
   inline isl::union_pw_multi_aff scale(isl::val val) const;
-  inline isl::union_pw_multi_aff scale(long val) const;
+  inline isl::union_pw_multi_aff scale(int64_t val) const;
   inline isl::union_pw_multi_aff scale_down(isl::val val) const;
-  inline isl::union_pw_multi_aff scale_down(long val) const;
+  inline isl::union_pw_multi_aff scale_down(int64_t val) const;
   inline isl::union_pw_multi_aff sub(isl::union_pw_multi_aff upma2) const;
   inline isl::union_pw_multi_aff subtract_domain(isl::union_set uset) const;
   inline isl::union_pw_multi_aff union_add(isl::union_pw_multi_aff upma2) const;
@@ -3546,7 +3546,7 @@ protected:
 public:
   inline /* implicit */ val();
   inline /* implicit */ val(const val &obj);
-  inline explicit val(isl::ctx ctx, long i);
+  inline explicit val(isl::ctx ctx, int64_t i);
   inline explicit val(isl::ctx ctx, const std::string &str);
   inline val &operator=(val obj);
   inline ~val();
@@ -3561,30 +3561,30 @@ public:
 
   inline isl::val abs() const;
   inline bool abs_eq(const isl::val &v2) const;
-  inline bool abs_eq(long v2) const;
+  inline bool abs_eq(int64_t v2) const;
   inline isl::val add(isl::val v2) const;
-  inline isl::val add(long v2) const;
+  inline isl::val add(int64_t v2) const;
   inline isl::val ceil() const;
-  inline int cmp_si(long i) const;
+  inline int cmp_si(int64_t i) const;
   inline isl::val div(isl::val v2) const;
-  inline isl::val div(long v2) const;
+  inline isl::val div(int64_t v2) const;
   inline bool eq(const isl::val &v2) const;
-  inline bool eq(long v2) const;
+  inline bool eq(int64_t v2) const;
   inline isl::val floor() const;
   inline isl::val gcd(isl::val v2) const;
-  inline isl::val gcd(long v2) const;
+  inline isl::val gcd(int64_t v2) const;
   inline bool ge(const isl::val &v2) const;
-  inline bool ge(long v2) const;
-  inline long den_si() const;
-  inline long get_den_si() const;
-  inline long num_si() const;
-  inline long get_num_si() const;
+  inline bool ge(int64_t v2) const;
+  inline int64_t den_si() const;
+  inline int64_t get_den_si() const;
+  inline int64_t num_si() const;
+  inline int64_t get_num_si() const;
   inline bool gt(const isl::val &v2) const;
-  inline bool gt(long v2) const;
+  inline bool gt(int64_t v2) const;
   static inline isl::val infty(isl::ctx ctx);
   inline isl::val inv() const;
   inline bool is_divisible_by(const isl::val &v2) const;
-  inline bool is_divisible_by(long v2) const;
+  inline bool is_divisible_by(int64_t v2) const;
   inline bool is_infty() const;
   inline bool is_int() const;
   inline bool is_nan() const;
@@ -3598,20 +3598,20 @@ public:
   inline bool is_rat() const;
   inline bool is_zero() const;
   inline bool le(const isl::val &v2) const;
-  inline bool le(long v2) const;
+  inline bool le(int64_t v2) const;
   inline bool lt(const isl::val &v2) const;
-  inline bool lt(long v2) const;
+  inline bool lt(int64_t v2) const;
   inline isl::val max(isl::val v2) const;
-  inline isl::val max(long v2) const;
+  inline isl::val max(int64_t v2) const;
   inline isl::val min(isl::val v2) const;
-  inline isl::val min(long v2) const;
+  inline isl::val min(int64_t v2) const;
   inline isl::val mod(isl::val v2) const;
-  inline isl::val mod(long v2) const;
+  inline isl::val mod(int64_t v2) const;
   inline isl::val mul(isl::val v2) const;
-  inline isl::val mul(long v2) const;
+  inline isl::val mul(int64_t v2) const;
   static inline isl::val nan(isl::ctx ctx);
   inline bool ne(const isl::val &v2) const;
-  inline bool ne(long v2) const;
+  inline bool ne(int64_t v2) const;
   inline isl::val neg() const;
   static inline isl::val neginfty(isl::ctx ctx);
   static inline isl::val negone(isl::ctx ctx);
@@ -3619,7 +3619,7 @@ public:
   inline isl::val pow2() const;
   inline int sgn() const;
   inline isl::val sub(isl::val v2) const;
-  inline isl::val sub(long v2) const;
+  inline isl::val sub(int64_t v2) const;
   inline isl::val trunc() const;
   static inline isl::val zero(isl::ctx ctx);
 };
@@ -3654,7 +3654,7 @@ public:
   inline std::string to_str() const;
 
   inline isl::val_list add(isl::val el) const;
-  inline isl::val_list add(long el) const;
+  inline isl::val_list add(int64_t el) const;
   inline isl::val_list clear() const;
   inline isl::val_list concat(isl::val_list list2) const;
   inline isl::val_list drop(unsigned int first, unsigned int n) const;
@@ -3803,7 +3803,7 @@ isl::aff aff::add_constant(isl::val v) const
   return manage(res);
 }
 
-isl::aff aff::add_constant(long v) const
+isl::aff aff::add_constant(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -4007,7 +4007,7 @@ isl::aff aff::mod(isl::val mod) const
   return manage(res);
 }
 
-isl::aff aff::mod(long mod) const
+isl::aff aff::mod(int64_t mod) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -4086,7 +4086,7 @@ isl::aff aff::scale(isl::val v) const
   return manage(res);
 }
 
-isl::aff aff::scale(long v) const
+isl::aff aff::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -4105,7 +4105,7 @@ isl::aff aff::scale_down(isl::val v) const
   return manage(res);
 }
 
-isl::aff aff::scale_down(long v) const
+isl::aff aff::scale_down(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -10211,7 +10211,7 @@ isl::multi_aff multi_aff::scale(isl::val v) const
   return manage(res);
 }
 
-isl::multi_aff multi_aff::scale(long v) const
+isl::multi_aff multi_aff::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -10242,7 +10242,7 @@ isl::multi_aff multi_aff::scale_down(isl::val v) const
   return manage(res);
 }
 
-isl::multi_aff multi_aff::scale_down(long v) const
+isl::multi_aff multi_aff::scale_down(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -11142,7 +11142,7 @@ isl::multi_pw_aff multi_pw_aff::scale(isl::val v) const
   return manage(res);
 }
 
-isl::multi_pw_aff multi_pw_aff::scale(long v) const
+isl::multi_pw_aff multi_pw_aff::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -11173,7 +11173,7 @@ isl::multi_pw_aff multi_pw_aff::scale_down(isl::val v) const
   return manage(res);
 }
 
-isl::multi_pw_aff multi_pw_aff::scale_down(long v) const
+isl::multi_pw_aff multi_pw_aff::scale_down(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -11748,7 +11748,7 @@ isl::multi_union_pw_aff multi_union_pw_aff::scale(isl::val v) const
   return manage(res);
 }
 
-isl::multi_union_pw_aff multi_union_pw_aff::scale(long v) const
+isl::multi_union_pw_aff multi_union_pw_aff::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -11779,7 +11779,7 @@ isl::multi_union_pw_aff multi_union_pw_aff::scale_down(isl::val v) const
   return manage(res);
 }
 
-isl::multi_union_pw_aff multi_union_pw_aff::scale_down(long v) const
+isl::multi_union_pw_aff multi_union_pw_aff::scale_down(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -12017,7 +12017,7 @@ isl::multi_val multi_val::add(isl::val v) const
   return manage(res);
 }
 
-isl::multi_val multi_val::add(long v) const
+isl::multi_val multi_val::add(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -12205,7 +12205,7 @@ isl::multi_val multi_val::scale(isl::val v) const
   return manage(res);
 }
 
-isl::multi_val multi_val::scale(long v) const
+isl::multi_val multi_val::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -12236,7 +12236,7 @@ isl::multi_val multi_val::scale_down(isl::val v) const
   return manage(res);
 }
 
-isl::multi_val multi_val::scale_down(long v) const
+isl::multi_val multi_val::scale_down(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -12255,7 +12255,7 @@ isl::multi_val multi_val::set_at(int pos, isl::val el) const
   return manage(res);
 }
 
-isl::multi_val multi_val::set_at(int pos, long el) const
+isl::multi_val multi_val::set_at(int pos, int64_t el) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -12293,7 +12293,7 @@ isl::multi_val multi_val::set_val(int pos, isl::val el) const
   return manage(res);
 }
 
-isl::multi_val multi_val::set_val(int pos, long el) const
+isl::multi_val multi_val::set_val(int pos, int64_t el) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -12929,7 +12929,7 @@ isl::pw_aff pw_aff::mod(isl::val mod) const
   return manage(res);
 }
 
-isl::pw_aff pw_aff::mod(long mod) const
+isl::pw_aff pw_aff::mod(int64_t mod) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -13068,7 +13068,7 @@ isl::pw_aff pw_aff::scale(isl::val v) const
   return manage(res);
 }
 
-isl::pw_aff pw_aff::scale(long v) const
+isl::pw_aff pw_aff::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -13087,7 +13087,7 @@ isl::pw_aff pw_aff::scale_down(isl::val f) const
   return manage(res);
 }
 
-isl::pw_aff pw_aff::scale_down(long f) const
+isl::pw_aff pw_aff::scale_down(int64_t f) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -13882,7 +13882,7 @@ isl::pw_multi_aff pw_multi_aff::scale(isl::val v) const
   return manage(res);
 }
 
-isl::pw_multi_aff pw_multi_aff::scale(long v) const
+isl::pw_multi_aff pw_multi_aff::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -13901,7 +13901,7 @@ isl::pw_multi_aff pw_multi_aff::scale_down(isl::val v) const
   return manage(res);
 }
 
-isl::pw_multi_aff pw_multi_aff::scale_down(long v) const
+isl::pw_multi_aff pw_multi_aff::scale_down(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -19084,7 +19084,7 @@ isl::union_map union_map::fixed_power(isl::val exp) const
   return manage(res);
 }
 
-isl::union_map union_map::fixed_power(long exp) const
+isl::union_map union_map::fixed_power(int64_t exp) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -20114,7 +20114,7 @@ isl::union_pw_aff union_pw_aff::mod(isl::val f) const
   return manage(res);
 }
 
-isl::union_pw_aff union_pw_aff::mod(long f) const
+isl::union_pw_aff union_pw_aff::mod(int64_t f) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -20157,7 +20157,7 @@ isl::union_pw_aff union_pw_aff::scale(isl::val v) const
   return manage(res);
 }
 
-isl::union_pw_aff union_pw_aff::scale(long v) const
+isl::union_pw_aff union_pw_aff::scale(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -20176,7 +20176,7 @@ isl::union_pw_aff union_pw_aff::scale_down(isl::val v) const
   return manage(res);
 }
 
-isl::union_pw_aff union_pw_aff::scale_down(long v) const
+isl::union_pw_aff union_pw_aff::scale_down(int64_t v) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -20823,7 +20823,7 @@ isl::union_pw_multi_aff union_pw_multi_aff::scale(isl::val val) const
   return manage(res);
 }
 
-isl::union_pw_multi_aff union_pw_multi_aff::scale(long val) const
+isl::union_pw_multi_aff union_pw_multi_aff::scale(int64_t val) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -20842,7 +20842,7 @@ isl::union_pw_multi_aff union_pw_multi_aff::scale_down(isl::val val) const
   return manage(res);
 }
 
-isl::union_pw_multi_aff union_pw_multi_aff::scale_down(long val) const
+isl::union_pw_multi_aff union_pw_multi_aff::scale_down(int64_t val) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -21807,7 +21807,7 @@ val::val(const val &obj)
 val::val(__isl_take isl_val *ptr)
     : ptr(ptr) {}
 
-val::val(isl::ctx ctx, long i)
+val::val(isl::ctx ctx, int64_t i)
 {
   auto saved_ctx = ctx;
   options_scoped_set_on_error saved_on_error(saved_ctx, exception::on_error);
@@ -21896,7 +21896,7 @@ bool val::abs_eq(const isl::val &v2) const
   return res;
 }
 
-bool val::abs_eq(long v2) const
+bool val::abs_eq(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -21915,7 +21915,7 @@ isl::val val::add(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::add(long v2) const
+isl::val val::add(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -21934,7 +21934,7 @@ isl::val val::ceil() const
   return manage(res);
 }
 
-int val::cmp_si(long i) const
+int val::cmp_si(int64_t i) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -21956,7 +21956,7 @@ isl::val val::div(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::div(long v2) const
+isl::val val::div(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -21975,7 +21975,7 @@ bool val::eq(const isl::val &v2) const
   return res;
 }
 
-bool val::eq(long v2) const
+bool val::eq(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22006,7 +22006,7 @@ isl::val val::gcd(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::gcd(long v2) const
+isl::val val::gcd(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22025,14 +22025,14 @@ bool val::ge(const isl::val &v2) const
   return res;
 }
 
-bool val::ge(long v2) const
+bool val::ge(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
   return this->ge(isl::val(ctx(), v2));
 }
 
-long val::den_si() const
+int64_t val::den_si() const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22042,12 +22042,12 @@ long val::den_si() const
   return res;
 }
 
-long val::get_den_si() const
+int64_t val::get_den_si() const
 {
   return den_si();
 }
 
-long val::num_si() const
+int64_t val::num_si() const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22057,7 +22057,7 @@ long val::num_si() const
   return res;
 }
 
-long val::get_num_si() const
+int64_t val::get_num_si() const
 {
   return num_si();
 }
@@ -22074,7 +22074,7 @@ bool val::gt(const isl::val &v2) const
   return res;
 }
 
-bool val::gt(long v2) const
+bool val::gt(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22115,7 +22115,7 @@ bool val::is_divisible_by(const isl::val &v2) const
   return res;
 }
 
-bool val::is_divisible_by(long v2) const
+bool val::is_divisible_by(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22278,7 +22278,7 @@ bool val::le(const isl::val &v2) const
   return res;
 }
 
-bool val::le(long v2) const
+bool val::le(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22297,7 +22297,7 @@ bool val::lt(const isl::val &v2) const
   return res;
 }
 
-bool val::lt(long v2) const
+bool val::lt(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22316,7 +22316,7 @@ isl::val val::max(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::max(long v2) const
+isl::val val::max(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22335,7 +22335,7 @@ isl::val val::min(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::min(long v2) const
+isl::val val::min(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22354,7 +22354,7 @@ isl::val val::mod(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::mod(long v2) const
+isl::val val::mod(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22373,7 +22373,7 @@ isl::val val::mul(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::mul(long v2) const
+isl::val val::mul(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22402,7 +22402,7 @@ bool val::ne(const isl::val &v2) const
   return res;
 }
 
-bool val::ne(long v2) const
+bool val::ne(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22485,7 +22485,7 @@ isl::val val::sub(isl::val v2) const
   return manage(res);
 }
 
-isl::val val::sub(long v2) const
+isl::val val::sub(int64_t v2) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);
@@ -22642,7 +22642,7 @@ isl::val_list val_list::add(isl::val el) const
   return manage(res);
 }
 
-isl::val_list val_list::add(long el) const
+isl::val_list val_list::add(int64_t el) const
 {
   if (!ptr)
     exception::throw_invalid("NULL input", __FILE__, __LINE__);

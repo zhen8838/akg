@@ -33,12 +33,13 @@
 #include <runtime/thread_storage_scope.h>
 #include <tvm/runtime/registry.h>
 
+#include <climits>
+#include <array>
 #include <mutex>
 
+#include "codegen/util.h"
 #include "prof_mgr_core.h"
 #include "runtime/cce/cce_common.h"
-#include "codegen/util.h"
-#include <climits>
 
 #ifdef USE_CCE_PROFILING
 #include "profile_mgr.h"
@@ -175,7 +176,7 @@ class CceWrappedFunc {
 
   // invoke the function with void arguments
   void operator()(const TVMArgs args, TVMRetValue* rv, void** void_args, int64_t* shape_args,
-		  size_t shape_arg_size) const {
+                  size_t shape_arg_size) const {
     int device_id;
     CCE_CALL(rtGetDevice(&device_id));
 
@@ -215,21 +216,22 @@ class CceWrappedFunc {
       }
 #ifdef USE_KC_AIR
       result = rtKernelLaunchShapes(fcache_[device_id], blockDim,
-                                    raw_args, // void_args,
+                                    raw_args,  // void_args,
                                     static_cast<uint32_t>(args_size), shape_args, shape_arg_size,
                                     l2ctrl, strm);
 #else
       for (size_t ssize = raw_size; ssize < arg_size_.size(); ++ssize) {
-        void* tempshape = reinterpret_cast<void*> (shape_args[ssize - raw_size]);
+        void* tempshape = reinterpret_cast<void*>(shape_args[ssize - raw_size]);
         raw_args[ssize] = tempshape;
         args_size += 8;
       }
-      result = rtKernelLaunch(fcache_[device_id], blockDim, raw_args, static_cast<uint32_t>(args_size), l2ctrl, strm);
+      result = rtKernelLaunch(fcache_[device_id], blockDim, raw_args,
+                              static_cast<uint32_t>(args_size), l2ctrl, strm);
 #endif
       akg::RecordCore(blockDim, true);
     }
 
-#ifdef USE_CCE_PROFILING    
+#ifdef USE_CCE_PROFILING
     uint32_t stream_id;
     uint32_t task_id;
     auto rt_ret = rtGetTaskIdAndStreamID(&task_id, &stream_id);
@@ -272,7 +274,7 @@ class CceWrappedFunc {
 
 PackedFunc CceModuleNode::GetFunction(const std::string& name,
                                       const ObjectPtr<Object>& sptr_to_self) {
-  CHECK_EQ(sptr_to_self.get(), this);
+  CHECK_EQ(sptr_to_self.get(), (Object*)this);
   CHECK_NE(name, symbol::tvm_module_main) << "Device function do not have main";
 
   auto it = fmap_.find(name);

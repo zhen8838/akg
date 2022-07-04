@@ -36,6 +36,8 @@
 #include <isl/schedule.h>
 #include <isl/schedule_node.h>
 
+#define NONNULL __attribute__((nonnull))
+
 namespace mls {
 ////////////////////////////////////////////////////////////////////////////////
 // Forward declarations
@@ -114,7 +116,7 @@ class Options {
   /// \param s String to read
   /// \return Read Solver type
   /// \relatesalso mls::bin::Options::SolverType
-  [[gnu::nonnull]] static mls::bin::Options::SolverType SolverTypeFromString(const char *str);
+  static mls::bin::Options::SolverType SolverTypeFromString(const char *str) NONNULL;
 
   ////////////////////////////////////////////////////////////////////////////////
   // Constructors, destructors, etc.
@@ -335,9 +337,8 @@ class InfluenceOperation {
   /// \param[in] dimensions Target dimension
   /// \param[in] value Value for the operation
   /// \param[in] type Type of the operation
-  [[gnu::nonnull]] InfluenceOperation(
-    const char *statement, size_t dimension, long int value,
-    mls::bin::InfluenceOperation::Type type = mls::bin::InfluenceOperation::Type::kNone);
+  InfluenceOperation(const char *statement, size_t dimension, long int value,
+                     mls::bin::InfluenceOperation::Type type = mls::bin::InfluenceOperation::Type::kNone) NONNULL;
 
   /// \brief Get the target statement
   /// \result The target statement
@@ -390,12 +391,12 @@ class Influence {
 
   /// \brief Constructor from a serialized json string of a MindTrick
   /// \param[in] str Serialized json string of a MindTrick
-  [[gnu::nonnull]] Influence(const char *str);
+  Influence(const char *str) NONNULL;
 
   /// \brief Constructor from a serialized json string of a MindTrick
   /// \param[in] str Serialized json string of a MindTrick
   /// \param[in] options MLSched options
-  [[gnu::nonnull]] Influence(const char *str, const mls::bin::Options &options);
+  Influence(const char *str, const mls::bin::Options &options) NONNULL;
 
   ////////////////////////////////////////////////////////////////////////////////
   // Operators
@@ -444,7 +445,7 @@ class Influence {
 
   /// \brief Parse soft constraints from a serialized JSON string
   /// \param[in] str Serialized JSON string
-  [[gnu::nonnull]] void ParseSoftConstraints(const char *str);
+  void ParseSoftConstraints(const char *str) NONNULL;
 
   ////////////////////////////////////////////////////////////////////////////////
   // Misc. friend functions
@@ -490,17 +491,17 @@ class Hints {
 
   /// \brief Constructor from a serialized json string of a MindTrick
   /// \param[in] str Serialized json string of a MindTrick
-  [[gnu::nonnull]] Hints(const char *str);
+  Hints(const char *str) NONNULL;
 
   /// \brief Constructor from a serialized json string of a MindTrick
   /// \param[in] str Serialized json string of a MindTrick
   /// \param[in] options MLSched options
-  [[gnu::nonnull]] Hints(const char *str, const mls::bin::Options &options);
+  Hints(const char *str, const mls::bin::Options &options) NONNULL;
 
   /// \brief Constructor from a isl_union_map
   /// \param[in] directives Hints represented as an isl_union_map
   /// \param[in] options Runtime options
-  [[gnu::nonnull]] Hints(__isl_keep isl_union_map *const directives, const mls::bin::Options &options);
+  Hints(__isl_keep isl_union_map *const directives, const mls::bin::Options &options) NONNULL;
 
   ////////////////////////////////////////////////////////////////////////////////
   // Operators
@@ -590,12 +591,12 @@ class Hints {
   /// \brief Get a string representation of object
   /// \return A string representation of the object
   /// \note The scop's internal options will be used
-  [[gnu::nonnull]] std::shared_ptr<char> String(void) const;
+  std::shared_ptr<char> String(void) const NONNULL;
 
   /// \brief Get a string representation of object
   /// \param[in] options Options that may change the string representation
   /// \return A string representation of the object
-  [[gnu::nonnull]] std::shared_ptr<char> String(const mls::bin::Options &options) const;
+  std::shared_ptr<char> String(const mls::bin::Options &options) const NONNULL;
 
   ////////////////////////////////////////////////////////////////////////////////
   // Setters
@@ -603,19 +604,19 @@ class Hints {
 
   /// \brief Set the Serials component of the directives
   /// \param[in] serials Serials component for the directives
-  [[gnu::nonnull]] void SetStatementSerials(const char *statement, const std::vector<int> &serials);
+  void SetStatementSerials(const char *statement, const std::vector<int> &serials) NONNULL;
 
   /// \brief Set the Vectorials component of the directives
   /// \param[in] vectorials Vectorials component for the directives
-  [[gnu::nonnull]] void SetStatementVectorials(const char *statement, const std::vector<int> &vectorials);
+  void SetStatementVectorials(const char *statement, const std::vector<int> &vectorials) NONNULL;
 
   /// \brief Set the Reduces component of the directives
   /// \param[in] reduces Reduces component for the directives
-  [[gnu::nonnull]] void SetStatementReduces(const char *statement, const std::vector<int> &reduces);
+  void SetStatementReduces(const char *statement, const std::vector<int> &reduces) NONNULL;
 
   /// \brief Set the Parallels component of the directives
   /// \param[in] parallels Parallels component for the directives
-  [[gnu::nonnull]] void SetStatementParallels(const char *statement, const std::vector<int> &parallels);
+  void SetStatementParallels(const char *statement, const std::vector<int> &parallels) NONNULL;
 
   /// \brief Set the Influence component of the hints
   /// \param[in] influence Influence component of the hints
@@ -680,8 +681,8 @@ class Scop {
   /// \param[in] dependencies Dependencies
   /// \param[in] options Options for MLSched
   /// \param[in] name Optional name for the Scop
-  [[gnu::nonnull(1, 2)]] Scop(__isl_keep isl_schedule *sch, __isl_keep isl_union_map *dependencies,
-                              const mls::bin::Options &options, const char *name = nullptr);
+  Scop(__isl_keep isl_schedule *sch NONNULL, __isl_keep isl_union_map *dependencies NONNULL,
+       const mls::bin::Options &options, const char *name = nullptr);
 
   /// \brief Constructor from isl data
   /// \param[in] sch Initial schedule
@@ -690,9 +691,8 @@ class Scop {
   /// \param[in] writes Writes
   /// \param[in] options Options for MLSched
   /// \param[in] name Optional name for the Scop
-  [[gnu::nonnull(1, 4)]] Scop(__isl_keep isl_schedule *sch, __isl_keep isl_union_map *dependencies,
-                              __isl_keep isl_union_map *reads, __isl_keep isl_union_map *writes,
-                              const mls::bin::Options &options, const char *name = nullptr);
+  Scop(__isl_keep isl_schedule *sch NONNULL, __isl_keep isl_union_map *dependencies, __isl_keep isl_union_map *reads,
+       __isl_keep isl_union_map *writes NONNULL, const mls::bin::Options &options, const char *name = nullptr);
 
   /// \brief Constructor from isl data
   /// \param[in] sch Initial schedule
@@ -700,9 +700,8 @@ class Scop {
   /// \param[in] influence Influence for MLSched
   /// \param[in] options Options for MLSched
   /// \param[in] name Optional name for the Scop
-  [[gnu::nonnull(1, 2)]] Scop(__isl_keep isl_schedule *sch, __isl_keep isl_union_map *dependencies,
-                              const mls::bin::Influence &influence, const mls::bin::Options &options,
-                              const char *name = nullptr);
+  Scop(__isl_keep isl_schedule *sch NONNULL, __isl_keep isl_union_map *dependencies NONNULL,
+       const mls::bin::Influence &influence, const mls::bin::Options &options, const char *name = nullptr);
 
   /// \brief Constructor from isl data
   /// \param[in] sch Initial schedule
@@ -712,10 +711,9 @@ class Scop {
   /// \param[in] influence Influence for MLSched
   /// \param[in] options Options for MLSched
   /// \param[in] name Optional name for the Scop
-  [[gnu::nonnull(1, 4)]] Scop(__isl_keep isl_schedule *sch, __isl_keep isl_union_map *dependencies,
-                              __isl_keep isl_union_map *reads, __isl_keep isl_union_map *writes,
-                              const mls::bin::Influence &influence, const mls::bin::Options &options,
-                              const char *name = nullptr);
+  Scop(__isl_keep isl_schedule *sch NONNULL, __isl_keep isl_union_map *dependencies, __isl_keep isl_union_map *reads,
+       __isl_keep isl_union_map *writes NONNULL, const mls::bin::Influence &influence, const mls::bin::Options &options,
+       const char *name = nullptr);
 
   /// \brief Constructor from isl data
   /// \param[in] sch Initial schedule
@@ -723,9 +721,8 @@ class Scop {
   /// \param[in] hints Hints for MLSched
   /// \param[in] options Options for MLSched
   /// \param[in] name Optional name for the Scop
-  [[gnu::nonnull(1, 2)]] Scop(__isl_keep isl_schedule *sch, __isl_keep isl_union_map *dependencies,
-                              const mls::bin::Hints &hints, const mls::bin::Options &options,
-                              const char *name = nullptr);
+  Scop(__isl_keep isl_schedule *sch NONNULL, __isl_keep isl_union_map *dependencies NONNULL,
+       const mls::bin::Hints &hints, const mls::bin::Options &options, const char *name = nullptr);
 
   /// \brief Constructor from isl data
   /// \param[in] sch Initial schedule
@@ -735,10 +732,9 @@ class Scop {
   /// \param[in] hints Hints for MLSched
   /// \param[in] options Options for MLSched
   /// \param[in] name Optional name for the Scop
-  [[gnu::nonnull(1, 4)]] Scop(__isl_keep isl_schedule *sch, __isl_keep isl_union_map *dependencies,
-                              __isl_keep isl_union_map *reads, __isl_keep isl_union_map *writes,
-                              const mls::bin::Hints &hints, const mls::bin::Options &options,
-                              const char *name = nullptr);
+  Scop(__isl_keep isl_schedule *sch NONNULL, __isl_keep isl_union_map *dependencies, __isl_keep isl_union_map *reads,
+       __isl_keep isl_union_map *writes NONNULL, const mls::bin::Hints &hints, const mls::bin::Options &options,
+       const char *name = nullptr);
 
   ////////////////////////////////////////////////////////////////////////////////
   // Operators

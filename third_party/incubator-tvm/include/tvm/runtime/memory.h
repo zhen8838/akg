@@ -72,7 +72,7 @@ class ObjAllocatorBase {
                          std::forward<Args>(args)...);
     ptr->type_index_ = T::RuntimeTypeIndex();
     ptr->deleter_ = Handler::Deleter();
-    return ObjectPtr<T>(ptr);
+    return ObjectPtr<T>((Object*)ptr);
   }
 };
 

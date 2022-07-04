@@ -92,7 +92,11 @@ set(ISL_SOURCES
 )
 
 # The isl library is included in the (shared)  library.
-set(CMAKE_C_FLAGS "-fstack-protector-all -Wl,-z,relro,-z,now,-z,noexecstack -fPIC ${CMAKE_C_FLAGS}")
+set(CMAKE_C_FLAGS "-fstack-protector-all -fPIC ${CMAKE_C_FLAGS}")
+if(NOT APPLE)
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,-z,relro,-z,now,-z,noexecstack")
+endif(NOT APPLE)
+
 if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -D_FORTIFY_SOURCE=2")
 endif()

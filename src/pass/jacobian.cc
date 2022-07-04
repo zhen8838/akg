@@ -23,7 +23,7 @@
 namespace akg {
 namespace ir {
 
-constexpr double pi() { return std::atan(1) * 4; }
+double pi() { return std::atan(1) * 4; }
 
 class TmpTensorChecker : public IRVisitor {
  public:

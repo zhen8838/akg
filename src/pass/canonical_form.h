@@ -38,7 +38,7 @@ struct VarCompare {
 };
 
 class Monomial;
-using VarMap = map<const Var, int, VarCompare>;
+using VarMap = map<Var, int, VarCompare>;
 using VarReplaceMap = unordered_map<Var, tuple<set<Monomial>, set<Monomial>, Expr>, air::NodeHash, air::NodeEqual>;
 using UnorderedVarMap = unordered_map<Var, vector<Expr>, air::NodeHash, air::NodeEqual>;
 

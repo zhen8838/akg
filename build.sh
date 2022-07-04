@@ -109,8 +109,10 @@ do
             elif [[ "${arch_info}" =~ "x86_64" ]]; then
               arch_name="x86_64"
             else
-              echo "-- Warning: Only supports aarch64 and x86_64, but current is ${arch_info}"
-              exit 1
+              # echo "-- Warning: Only supports aarch64 and x86_64, but current is ${arch_info}"
+              # exit 1
+              CMAKE_ARGS="${CMAKE_ARGS} -DAKG_USE_MLS=false"
+              break
             fi
 
             akg_extend_dir="${AKG_DIR}/prebuild/${arch_name}"
@@ -158,20 +160,25 @@ echo "---------------- AKG: build start ----------------"
 
 # Build target
 cd $BUILD_DIR
-cmake .. ${CMAKE_ARGS}
+cmake .. ${CMAKE_ARGS} -DLLVM_DIR=/Users/lisa/Documents/llvm-project/build/install/lib/cmake/llvm
 make -j$THREAD_NUM
 make install
 
-if [ ! -f "libakg.so" ];then
-  echo "[ERROR] libakg.so not exist!"
+EXT=".so"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  EXT=".dylib"
+fi
+
+if [ ! -f "libakg$EXT" ];then
+  echo "[ERROR] libakg$EXT not exist!"
   exit 1
 fi
 
 # Copy target to output/ directory
-cp libakg.so ${OUTPUT_PATH}
+cp libakg$EXT ${OUTPUT_PATH}
 cd ${OUTPUT_PATH}
-tar czvf libakg.tar.gz libakg.so
-rm -rf libakg.so
+tar czvf libakg.tar.gz libakg$EXT
+rm -rf libakg$EXT
 write_checksum
 
 cd -

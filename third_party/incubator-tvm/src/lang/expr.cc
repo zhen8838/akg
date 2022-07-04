@@ -96,6 +96,9 @@ Expr DataType::min() const {
 Expr::Expr(int32_t value)
     : Expr(IntImm::make(Int(32), value)) {}
 
+Expr::Expr(size_t value)
+  : Expr(IntImm::make(UInt(64), value)) {}
+
 Expr::Expr(int64_t value)
   : Expr(IntImm::make(Int(64), value)) {}
 

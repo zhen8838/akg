@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "Debug",
+      "displayName": "Debug",
+      "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+      "binaryDir": "${sourceDir}/build",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "USE_LLVM": true,
+        "USE_RPC": true,
+        "LLVM_DIR": "/Users/lisa/Documents/llvm-project/build/install/lib/cmake/llvm",
+        "CONDA_PREFIX": "/Users/lisa/miniforge3/envs/dl",
+        "AKG_USE_MLS": false,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    }
+  ]
+}

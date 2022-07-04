@@ -57,6 +57,16 @@ inline T operator-(const T a, const T b) {
   return a.sub(b);
 }
 
+template <typename T>
+inline auto operator-(const std::__wrap_iter<T> a, const std::__wrap_iter<T> b) -> decltype(a.base() - b.base()) {
+  return std::operator-(a, b);
+}
+
+template <typename T>
+inline auto operator-(const std::move_iterator<T> a, const std::move_iterator<T> b) -> decltype(a.base() - b.base()) {
+  return std::operator-(a, b);
+}
+
 // isl::val
 inline isl::val operator+(const isl::val &v, int64_t i) { return v.add(isl::val(v.ctx(), i)); }
 inline isl::val operator+(int64_t i, const isl::val &v) { return v + i; }

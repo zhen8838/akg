@@ -1139,7 +1139,7 @@ isl::schedule_node_band SchedulingMindTrick::DetectAndSplitSwizzleDim(const isl:
   }
 
   isl::schedule_node_band result = band;
-
+#ifdef AKG_USE_MLS
   const isl::set &lexmax = isl_schedule_node_band_lexmax(band);
   const long size = isl_set_plain_get_num_si(lexmax, innermost) + 1;
   log::Info(log::Verbosity::medium, "innermost = " + std::to_string(innermost) + ", size = " + std::to_string(size));
@@ -1164,7 +1164,7 @@ isl::schedule_node_band SchedulingMindTrick::DetectAndSplitSwizzleDim(const isl:
       log::Info(log::Verbosity::medium, "swizzle dimension split");
     }
   }
-
+#endif
   return result;
 }
 
@@ -1679,9 +1679,11 @@ isl::schedule SchedulingMindTrick::Apply(const isl::schedule &sch) {
   // 3. See if there is an explicit tree.
 
   // Attempt to influence a schedule
+#ifdef AKG_USE_MLS
   if (!hints_.Empty()) {
     BuildInfluencedSchedule(sch);
   }
+#endif
   // Only attempt to build the full suggestion if the influence failed.
   if (!influenced_schedule_) {
     BuildSuggestedSchedule(sch);
@@ -1750,9 +1752,7 @@ static inline std::string escape(const char *input, char c) {
   return stream.str();
 }
 
-static inline std::string escape(const std::string &input, char c) {
-  return escape(input.c_str(), c);
-}
+static inline std::string escape(const std::string &input, char c) { return escape(input.c_str(), c); }
 
 static inline std::string quote(const std::string &input) { return "\"" + input + "\""; }
 

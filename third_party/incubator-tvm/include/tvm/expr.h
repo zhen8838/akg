@@ -75,6 +75,8 @@ class Expr : public NodeRef {
    */
   TVM_DLL Expr(std::string str);  // NOLINT(*)
 
+  TVM_DLL Expr(size_t value);
+
   TVM_DLL Expr(int64_t value);
 
   TVM_DLL Expr(uint64_t value);
